@@ -405,7 +405,7 @@ class Api(BaseApi):
         return kwargs
 
     def _init_request_params(self):
-        method_whitelist = [
+        allowed_methods = [
             'HEAD',
             'TRACE',
             'GET',
@@ -422,7 +422,7 @@ class Api(BaseApi):
             'status': 5,
             'status_forcelist': [503, 504],
             'backoff_factor': 0.1,
-            'method_whitelist': method_whitelist,
+            'allowed_methods': allowed_methods,
         }
         # Merge studies
         # /study/{namespace}/{studyUid}/merge?sid={sid}&secondary_study_uid={secondary_study_uid}&delete_secondary_study={0,1}
@@ -434,7 +434,7 @@ class Api(BaseApi):
             'status': 5,
             'status_forcelist': [502, 503, 504],
             'backoff_factor': 0.1,
-            'method_whitelist': method_whitelist,
+            'allowed_methods': allowed_methods,
         }
 
     def _init_service_entrypoints(self):

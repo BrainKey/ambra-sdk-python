@@ -265,7 +265,7 @@ The example below shows how to do this::
   max_retries = Retry(
       total=10,
       backoff_factor=0.2,
-      method_whitelist=['GET', 'POST'],
+      allowed_methods=['GET', 'POST'],
    )
   
   adapter = HTTPAdapter(max_retries=max_retries)
