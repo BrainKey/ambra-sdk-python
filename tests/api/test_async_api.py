@@ -66,6 +66,7 @@ class TestAsyncApi:
         await async_api.get_new_sid()
         assert async_api._sid is not None
 
+    @pytest.mark.requires_credentials
     @pytest.mark.asyncio
     async def test_get_new_sid_bad_creds(self):
         """Test fail get new sid.
@@ -80,6 +81,7 @@ class TestAsyncApi:
             await api.get_new_sid()
         await api.logout()
 
+    @pytest.mark.requires_credentials
     @pytest.mark.asyncio
     async def test_logout(self):
         """Test logout."""

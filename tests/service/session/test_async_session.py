@@ -18,6 +18,7 @@ class TestAsyncSessionEntrypoint:
         sid = await session.get_sid(username, password)
         assert sid
 
+    @pytest.mark.requires_credentials
     async def test_get_sid_bad_creds(self):
         """Test unsuccess get sid from session.
 
