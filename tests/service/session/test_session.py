@@ -17,6 +17,7 @@ class TestSessionEntrypoint:
         sid = session.get_sid(username, password)
         assert sid
 
+    @pytest.mark.requires_credentials
     def test_get_sid_bad_creds(self):
         """Test unsuccess get sid from session.
 

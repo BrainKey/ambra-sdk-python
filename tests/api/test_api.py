@@ -45,6 +45,7 @@ class TestApi:
         api.get_new_sid()
         assert api._sid is not None
 
+    @pytest.mark.requires_credentials
     def test_get_new_sid_bad_creds(self):
         """Test fail get new sid.
 

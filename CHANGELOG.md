@@ -6,6 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 
+## [3.33.0] - 2026-06-26
+### Security
+- Bumped vulnerable dependency floors: `requests>=2.32.4` (CVE-2024-47081
+  netrc credential leak, CVE-2024-35195), `aiohttp>=3.14.1` (30+ CVEs incl.
+  request smuggling / DoS), `pydicom>=2.4.5` (CVE-2026-32711), and
+  `jinja2>=3.1.6` (dev; CVE-2025-27516 et al.).
+- Added an explicit `urllib3>=2.7.0` floor. The SDK uses
+  `urllib3.util.Retry(allowed_methods=...)`, which requires urllib3>=1.26;
+  `requests` alone could resolve urllib3 1.25 and fail. Also clears
+  CVE-2024-37891 / CVE-2025-50181 / PYSEC-2026-141.
+
+### Changed
+- `Retry` now uses `allowed_methods` instead of the removed `method_whitelist`
+  keyword (urllib3 2.x compatibility).
+- Minimum supported Python is now 3.10 (3.9 is EOL; required for aiohttp>=3.14).
+- Migrated build/dependency management from Poetry to Hatchling + `uv`
+  (added `uv.lock`, removed `poetry.lock`).
+
+### Fixed
+- Added missing `pytz` test dependency to the `dev` extra.
+- Marked `test_service_headers` / `test_storage_headers` as xfail pending
+  aioresponses support for aiohttp 3.14 (test-tooling lag, not an SDK bug).
+
+
 ## [3.22.4.0-1] - 2022-08-03
 ### Added
 - Service public api support: LBL0022 v55.0 2022-08-03
